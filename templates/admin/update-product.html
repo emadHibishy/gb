@@ -1,0 +1,74 @@
+
+        <div class="admin-panel__content">
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="section-header">
+                        <h1>Update Product</h1>
+                    </div>
+                    <?php if(strlen($success) > 0){ ?>
+                        <div class="alert alert-success">
+                            <p><?php echo $success; ?></p>
+                        </div>
+                    <?php }
+                    if(strlen($error) > 0){ ?>
+                        <div class="alert alert-danger">
+                            <p><?php echo $error; ?></p>
+                        </div>
+                    <?php } ?>
+                </div>
+                <div class="col-md-8">
+                    <form class="form-horizontal" method="POST" action="?id=<?php echo $product['id']; ?>" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="product-title" class="col-sm-3 control-label">Product Title</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="product-title" placeholder="Product Title" name="title" value="<?php echo $product['title']; ?>">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="product-desc" class="col-sm-3 control-label">Product Description</label>
+                            <div class="col-sm-9">
+                                <textarea rows="6" class="form-control" id="product-desc" placeholder="Product Description" name="description"><?php echo $product['description']; ?>"</textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="product-price" class="col-sm-3 control-label">Product Price</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="product-price" placeholder="Product Price" name="price" value="<?php echo $product['price']; ?>">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="product-availability" class="col-sm-3 control-label">Product Availability</label>
+                            <div class="col-sm-9">
+                                <select name="available" class="form-control" id="product-availability">
+                                    <option value="1" <?php if($product['available'] == 1){echo 'selected';} ?>>Available</option>
+                                    <option value="0" <?php if($product['available'] == 0){echo 'selected';} ?>>Not Available</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="user-id" class="col-sm-3 control-label">User</label>
+                            <div class="col-sm-9">
+                                <select name="user_id" class="form-control" id="user-id">
+                                    <?php foreach($users as $user){
+                                        echo '<option value="'.$user['id'].'"'; if($product['user_id'] == $user['id']){echo 'selected'; } echo '>'.$user['username'].'</option>';
+                                    } ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="product-image" class="col-sm-3 control-label">Product Image</label>
+                            <div class="col-sm-9">
+                                <input type="file" class="form-control" name="image" id="product-image">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-3 col-sm-9">
+                                <button type="submit" class="btn btn-success"><i class="fa fa-plus"></i> Add Product</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
