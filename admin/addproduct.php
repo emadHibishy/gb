@@ -19,7 +19,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST')
 {
     $title          = $_POST['title'];
     $description    = $_POST['description'];
-    $price          = $_POST['price'];
+    $price          = filter_var($_POST['price'], FILTER_SANITIZE_NUMBER_FLOAT) ;
     $available      = $_POST['available'];
     $userId         = $_POST['user_id'];
     $image          = $_FILES['image']['name']; 
